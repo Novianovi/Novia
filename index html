@@ -76,44 +76,5 @@
     <a href="#video">Video</a>
   </nav>
 
-  <!-- HOME -->
-  <section id="home">
-    <div class="card">
-      <h1>Selamat Datang</h1>
-      <p>Ini adalah website pribadi saya yang dibuat dengan HTML & CSS.</p>
-    </div>
-  </section>
-
-  <!-- BIODATA -->
-  <section id="biodata">
-    <div class="card">
-      <h2>Biodata</h2>
-      <p>Nama: [Nama Anda]</p>
-      <p>Umur: [Umur]</p>
-      <p>Alamat: [Alamat]</p>
-      <p>Hobi: [Hobi]</p>
-    </div>
-  </section>
-
-  <!-- GALERI -->
-  <section id="galeri">
-    <h2>Galeri Foto</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/300">
-      <img src="https://via.placeholder.com/300">
-      <img src="https://via.placeholder.com/300">
-      <img src="https://via.placeholder.com/300">
-    </div>
-  </section>
-
-  <!-- VIDEO -->
-  <section id="video">
-    <h2>Video Saya</h2>
-    <video controls>
-      <source src="video.mp4" type="video/mp4">
-      Browser tidak mendukung video.
-    </video>
-  </section>
-
 </body>
 </html>
