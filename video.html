@@ -63,15 +63,22 @@
 
         /* Container Utama */
         .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 30px;
+            margin: 50px 20px;
             width: 90%;
             max-width: 800px;
-            margin-top: 60px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
             text-align: center;
-            animation: slideUp 1s ease;
+            animation: fadeIn 1s ease;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -79,38 +86,40 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         p {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             opacity: 0.8;
         }
 
-        /* Video Player Styling */
+        /* Video Wrapper untuk Rasio 16:9 */
         .video-wrapper {
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3), 
-                        0 0 20px rgba(255, 255, 255, 0.1);
+            padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #000;
         }
 
-        video {
+        .video-wrapper video, 
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border-radius: 20px;
-            display: block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            height: 100%;
+            border: none;
         }
 
         .video-info {
             margin-top: 25px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
             text-align: left;
         }
 
@@ -119,11 +128,10 @@
             color: #fff;
         }
 
-        /* Tombol kembali ke Galeri */
-        .btn-next {
+        .btn-back {
             display: inline-block;
             margin-top: 30px;
-            padding: 12px 35px;
+            padding: 10px 25px;
             background: white;
             color: #e73c7e;
             text-decoration: none;
@@ -132,9 +140,9 @@
             transition: 0.3s;
         }
 
-        .btn-next:hover {
+        .btn-back:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: #f0f0f0;
         }
     </style>
 </head>
@@ -144,26 +152,27 @@
         <a href="index.html">Home</a>
         <a href="biodata.html">Biodata</a>
         <a href="galeri.html">Galeri</a>
-        <a href="video.html">video</a>
+        <a href="vidio.html">Video</a>
     </nav>
 
     <div class="container">
         <h1>My Video</h1>
-        <p>Tonton cuplikan video menarik di bawah ini.</p>
-        
-        <div class="video rumah.mp4">
-            <video controls poster="video rumah.mp4">
-                <source src="video rumah.mp4" type="video/mp4">
-                Browser Anda tidak mendukung tag video. Silakan upgrade browser Anda.
+        <p>Tonton karya video terbaru saya di bawah ini.</p>
+
+        <div class="video-wrapper">
+            <video controls poster="https://via.placeholder.com/800x450?text=Klik+untuk+Putar">
+                <source src="movie.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video.
             </video>
-        </div>
+
+            </div>
 
         <div class="video-info">
             <h3>Deskripsi Video</h3>
-            <p>Video ini menjelaskan tentang [Sebutkan isi videomu]. Dibuat menggunakan teknik editing modern untuk hasil yang maksimal.</p>
+            <p>Video ini menjelaskan tentang [Isi Video Anda]. Dibuat menggunakan aplikasi editing video untuk memenuhi tugas sekolah/kuliah.</p>
         </div>
 
-        <a href="index.html" class="btn-next">Kembali ke Beranda</a>
+        <a href="index.html" class="btn-back">Kembali ke Beranda</a>
     </div>
 
 </body>
