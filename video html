@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video - My Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS INTERNAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            padding-bottom: 50px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigasi */
+        nav {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        /* Container Utama */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin-top: 60px;
+            text-align: center;
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        p {
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        /* Video Player Styling */
+        .video-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3), 
+                        0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .video-info {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            text-align: left;
+        }
+
+        .video-info h3 {
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        /* Tombol kembali ke Galeri */
+        .btn-next {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 35px;
+            background: white;
+            color: #e73c7e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-next:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="vidio.html">Video</a>
+    </nav>
+
+    <div class="container">
+        <h1>My Video</h1>
+        <p>Tonton cuplikan video menarik di bawah ini.</p>
+        
+        <div class="video-wrapper">
+            <video controls poster="https://via.placeholder.com/800x450?text=Klik+untuk+Putar">
+                <source src="video-saya.mp4" type="video/mp4">
+                Browser Anda tidak mendukung tag video. Silakan upgrade browser Anda.
+            </video>
+        </div>
+
+        <div class="video-info">
+            <h3>Deskripsi Video</h3>
+            <p>Video ini menjelaskan tentang [Sebutkan isi videomu]. Dibuat menggunakan teknik editing modern untuk hasil yang maksimal.</p>
+        </div>
+
+        <a href="index.html" class="btn-next">Kembali ke Beranda</a>
+    </div>
+
+</body>
+</html>
