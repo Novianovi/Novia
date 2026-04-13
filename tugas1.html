@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 - Portfolio Lengkap</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS RESET & GLOBAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth; /* Efek scroll halus */
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* BACKGROUND ANIMASI */
+        .bg-gradient {
+            fixed: top;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(-45deg, #1e293b, #334155, #1e1b4b, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* NAVIGASI */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: #38bdf8; }
+
+        /* CONTAINER UMUM */
+        section {
+            min-height: 100vh;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* BIODATA STYLE */
+        .bio-content {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .bio-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #38bdf8;
+            object-fit: cover;
+        }
+
+        .bio-table { width: 100%; flex: 1; }
+        .bio-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+        /* GALERI STYLE */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 200px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* VIDEO STYLE */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient"></div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#biodata">Biodata</a>
+        <a href="#galeri">Galeri</a>
+        <a href="#video">Video</a>
+        <a href="../index.html">Kembali</a>
+    </nav>
+
+    <section id="home">
+        <div style="text-align: center;">
+            <h1 style="font-size: 4rem; margin-bottom: 10px;">TUGAS 1</h1>
+            <p style="font-size: 1.2rem; opacity: 0.8;">Selamat datang di Portofolio Terpadu saya.</p>
+        </div>
+    </section>
+
+    <section id="biodata">
+        <div class="glass-card">
+            <h2>Biodata Diri</h2>
+            <div class="bio-content">
+                <img src="https://via.placeholder.com/180" alt="Profile" class="bio-img">
+                <table class="bio-table">
+                    <tr><td><b>Nama</b></td><td>Nama Lengkap Anda</td></tr>
+                    <tr><td><b>Pendidikan</b></td><td>Sekolah/Kampus Anda</td></tr>
+                    <tr><td><b>Keahlian</b></td><td>Web Design, Coding</td></tr>
+                    <tr><td><b>Cita-cita</b></td><td>Software Engineer</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri">
+        <div class="glass-card">
+            <h2>Galeri Foto</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400" alt="1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400" alt="2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400" alt="3"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400" alt="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video">
+        <div class="glass-card">
+            <h2>Video Dokumentasi</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="movie.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung video.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 - Dibuat untuk Tugas 1 GitHub
+    </footer>
+
+</body>
+</html>
