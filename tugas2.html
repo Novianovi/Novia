@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 02 - Penyusunan Formulir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        body {
+            background: #0f172a;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h3 {
+            margin: 25px 0 15px 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #38bdf8;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            opacity: 0.8;
+        }
+
+        input, select, textarea {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #38bdf8;
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Styling Button Group untuk Jenis Transaksi */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .btn-group input[type="radio"] {
+            display: none; /* Sembunyikan radio asli */
+        }
+
+        .btn-group label {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-group input[type="radio"]:checked + label {
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: 600;
+            border-color: #38bdf8;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 10px;
+            border: none;
+            background: #38bdf8;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #7dd3fc;
+            transform: translateY(-2px);
+        }
+
+        .nav-back {
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #38bdf8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="nav-back">← Kembali ke Menu Utama</a>
+
+    <div class="container">
+        <h1>Formulir Pengumpulan Data</h1>
+        
+        <form action="#">
+            <h3>1. Data Demografi</h3>
+            <div class="form-group">
+                <label>Nama Pengguna</label>
+                <input type="text" placeholder="Masukkan nama lengkap" required>
+            </div>
+            <div class="form-group">
+                <label>Tanggal Lahir</label>
+                <input type="date" required>
+            </div>
+            <div class="form-group">
+                <label>Alamat</label>
+                <textarea rows="3" placeholder="Masukkan alamat lengkap"></textarea>
+            </div>
+            <div class="form-group">
+                <label>No. Telepon</label>
+                <input type="tel" placeholder="08xxxxxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="contoh@mail.com">
+            </div>
+            <div class="form-group">
+                <label>Pendidikan Terakhir</label>
+                <select>
+                    <option value="" disabled selected>Pilih Pendidikan</option>
+                    <option value="sd">SD / Sederajat</option>
+                    <option value="smp">SMP / Sederajat</option>
+                    <option value="sma">SMA / SMK / Sederajat</option>
+                    <option value="d3">Diploma (D3)</option>
+                    <option value="s1">Sarjana (S1)</option>
+                    <option value="s2">Magister (S2)</option>
+                </select>
+            </div>
+
+            <h3>2. Data Bank</h3>
+            <div class="form-group">
+                <label>Nama Bank</label>
+                <select required>
+                    <option value="" disabled selected>Pilih Bank</option>
+                    <option value="bca">Bank Central Asia (BCA)</option>
+                    <option value="mandiri">Bank Mandiri</option>
+                    <option value="bni">Bank Negara Indonesia (BNI)</option>
+                    <option value="bri">Bank Rakyat Indonesia (BRI)</option>
+                    <option value="btn">Bank Tabungan Negara (BTN)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Nomor Rekening</label>
+                <input type="number" placeholder="Masukkan nomor rekening">
+            </div>
+
+            <h3>3. Data Transaksi Keuangan</h3>
+            <div class="form-group">
+                <label>Tanggal Transaksi</label>
+                <input type="date" required>
+            </div>
+            <div class="form-group">
+                <label>Uraian Transaksi</label>
+                <input type="text" placeholder="Contoh: Pembelian Alat Tulis">
+            </div>
+            <div class="form-group">
+                <label>Jenis Transaksi</label>
+                <div class="btn-group">
+                    <input type="radio" name="jenis" id="pemasukan" value="masuk">
+                    <label for="pemasukan">Pemasukan</label>
+                    
+                    <input type="radio" name="jenis" id="pengeluaran" value="keluar">
+                    <label for="pengeluaran">Pengeluaran</label>
+                </div>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>Debet (Rp)</label>
+                    <input type="number" placeholder="0">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Kredit (Rp)</label>
+                    <input type="number" placeholder="0">
+                </div>
+            </div>
+
+            <button type="submit">Kirim Data</button>
+        </form>
+    </div>
+
+</body>
+</html>
