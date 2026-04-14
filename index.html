@@ -1,5 +1,157 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Utama - Novia</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* Background Gradient Bergerak */
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Bagian Identitas Atas */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* Container Kartu Tugas */
+        .menu-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .task-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 25px;
+            width: 350px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .task-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #38bdf8;
+            box-shadow: 0 20px 50px rgba(56, 189, 248, 0.3);
+        }
+
+        .task-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .task-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+
+        .task-card p {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+
+        /* Animasi */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2rem; }
+            .task-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>NOVIA</h1>
+        <p>Sistem Informasi Manajemen Perikanan</p>
+    </div>
+
+    <div class="menu-container">
+        
+        <a href="tugas1.html" class="task-card">
+            <div class="icon">📂</div>
+            <h2>Tugas 1</h2>
+            <p>Portofolio Terpadu yang mencakup Biodata, Galeri Foto, dan Dokumentasi Video.</p>
+        </a>
+
+        <a href="tugas2.html" class="task-card">
+            <div class="icon">📝</div>
+            <h2>Tugas 2</h2>
+            <p>Penyusunan Formulir Data Demografi, Data Bank, dan Transaksi Keuangan.</p>
+        </a>
+
+    </div>
+
+    <footer style="margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">
+        &copy; 2026 Novia - Portofolio Akademik
+    </footer>
+
+</body>
+</html><html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
