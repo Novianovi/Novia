@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS INTERNAL */
+        /* RESET & BASE STYLE */
         * {
             margin: 0;
             padding: 0;
@@ -26,6 +26,7 @@
             align-items: center;
             color: white;
             padding-bottom: 50px;
+            overflow-x: hidden;
         }
 
         @keyframes gradient {
@@ -34,7 +35,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Navigasi */
+        /* NAVIGASI */
         nav {
             width: 100%;
             padding: 20px;
@@ -55,16 +56,19 @@
             margin: 0 20px;
             font-weight: 600;
             transition: 0.3s;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         nav a:hover {
             text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            color: #eee;
         }
 
-        /* Container Utama */
+        /* CONTAINER UTAMA */
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin-top: 50px;
             text-align: center;
             animation: fadeIn 1s ease;
@@ -80,73 +84,95 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
+            font-weight: 600;
         }
 
-        p {
+        .subtitle {
             margin-bottom: 40px;
-            opacity: 0.8;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        /* Grid Galeri */
+        /* GRID GALERI */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            /* Membuat 4 kolom pas pada layar besar, otomatis menyesuaikan pada layar kecil */
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
             padding: 10px;
         }
 
-        /* Card Foto */
+        /* CARD FOTO */
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            aspect-ratio: 1 / 1; /* Membuat kotak sempurna */
+            aspect-ratio: 1 / 1; /* Memastikan semua foto berbentuk kotak simetris */
             cursor: pointer;
-            transition: 0.4s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
+            object-fit: cover; /* Memotong gambar agar memenuhi kotak tanpa gepeng */
+            transition: 0.6s ease;
         }
 
-        /* Efek Hover */
+        /* EFEK HOVER */
         .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border-color: white;
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255, 255, 255, 0.8);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1) rotate(2deg);
-            filter: brightness(1.1);
+            transform: scale(1.1);
+            filter: brightness(0.7);
         }
 
-        /* Overlay Text saat Hover */
+        /* OVERLAY TEXT */
         .overlay {
             position: absolute;
-            bottom: 0;
+            bottom: -100%; /* Sembunyi di bawah */
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
-            padding: 20px;
-            opacity: 0;
-            transition: 0.3s;
+            padding: 25px 20px;
+            transition: 0.4s ease;
             text-align: left;
         }
 
         .gallery-item:hover .overlay {
-            opacity: 1;
+            bottom: 0; /* Muncul saat hover */
         }
 
-        @media (max-width: 600px) {
+        .overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .overlay small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet/HP besar */
+                gap: 15px;
+            }
+            h1 { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr; /* 1 kolom di HP kecil agar foto terlihat jelas */
             }
         }
     </style>
@@ -162,38 +188,38 @@
 
     <div class="container">
         <h1>My Gallery</h1>
-        <p>Kumpulan momen dan karya terbaik saya.</p>
+        <p class="subtitle">Kumpulan momen dan karya terbaik saya</p>
         
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="foto depan.jpeg">
+                <img src="foto depan.jpeg" alt="Tampilan Depan">
                 <div class="overlay">
-                    <h4>Momen 1</h4>
-                    <small>Deskripsi singkat foto</small>
+                    <h4>Bagian Depan</h4>
+                    <small>Momen di halaman utama</small>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="foto samping.jpeg">
+                <img src="foto samping.jpeg" alt="Tampilan Samping">
                 <div class="overlay">
-                    <h4>Momen 2</h4>
-                    <small>Deskripsi singkat foto</small>
+                    <h4>Bagian Samping</h4>
+                    <small>Perspektif dari sisi rumah</small>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="foto dalam.jpeg">
+                <img src="foto dalam.jpeg" alt="Tampilan Dalam">
                 <div class="overlay">
-                    <h4>Momen 3</h4>
-                    <small>Deskripsi singkat foto</small>
+                    <h4>Interior</h4>
+                    <small>Suasana di dalam ruangan</small>
                 </div>
             </div>
 
             <div class="gallery-item">
-                <img src="foto dapur.jpeg">
+                <img src="foto dapur.jpeg" alt="Tampilan Dapur">
                 <div class="overlay">
-                    <h4>Momen 4</h4>
-                    <small>Deskripsi singkat foto</small>
+                    <h4>Area Dapur</h4>
+                    <small>Ruang memasak yang nyaman</small>
                 </div>
             </div>
         </div>
