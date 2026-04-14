@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS INTERNAL */
         * {
             margin: 0;
             padding: 0;
@@ -34,7 +33,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Navigasi */
+        /* Navigasi - Pastikan Link ini sama di semua file .html */
         nav {
             width: 100%;
             padding: 20px;
@@ -94,7 +93,7 @@
             opacity: 0.8;
         }
 
-        /* Video Wrapper untuk Rasio 16:9 */
+        /* Video Wrapper */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* Rasio 16:9 */
@@ -105,14 +104,13 @@
             background: #000;
         }
 
-        .video-wrapper video, 
-        .video-wrapper iframe {
+        .video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: contain; /* Menjaga video tidak terpotong */
         }
 
         .video-info {
@@ -131,7 +129,7 @@
         .btn-back {
             display: inline-block;
             margin-top: 30px;
-            padding: 10px 25px;
+            padding: 12px 30px;
             background: white;
             color: #e73c7e;
             text-decoration: none;
@@ -142,7 +140,7 @@
 
         .btn-back:hover {
             transform: scale(1.05);
-            background: #f0f0f0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -152,24 +150,22 @@
         <a href="index.html">Home</a>
         <a href="biodata.html">Biodata</a>
         <a href="galeri.html">Galeri</a>
-        <a href="vidio.html">video</a>
-    </nav>
+        <a href="vidio.html">Video</a> </nav>
 
     <div class="container">
         <h1>My Video</h1>
         <p>Tonton karya video terbaru saya di bawah ini.</p>
 
         <div class="video-wrapper">
-            <video controls poster="vidio rumah.mp4">
+            <video controls>
                 <source src="vidio rumah.mp4" type="video/mp4">
                 Browser Anda tidak mendukung tag video.
             </video>
-
-            </div>
+        </div>
 
         <div class="video-info">
             <h3>Deskripsi Video</h3>
-            <p>Video ini menjelaskan tentang [Isi Video Anda]. Dibuat menggunakan aplikasi editing video untuk memenuhi tugas sekolah/kuliah.</p>
+            <p>Video ini menampilkan visualisasi rumah sebagai bagian dari tugas portofolio saya untuk mata kuliah Sistem Informasi Manajemen Perikanan.</p>
         </div>
 
         <a href="index.html" class="btn-back">Kembali ke Beranda</a>
