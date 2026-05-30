@@ -1,1 +1,144 @@
+<section id="simpanan" class="section">
+  <div class="card">
+    <h2 class="section-title">Simpan Pinjam Kelompok</h2>
+    <p class="section-desc">Pengelolaan dana simpanan wajib/sukarela, pengajuan pinjaman, dan status pelunasan anggota KUB.</p>
 
+    <div class="tabs" role="tablist" aria-label="Menu Simpan Pinjam">
+      <button class="tab-btn active" type="button" onclick="showTab(event,'sp-ringkasan')" aria-selected="true">Ringkasan Dana</button>
+      <button class="tab-btn" type="button" onclick="showTab(event,'sp-simpanan')" aria-selected="false">Data Simpanan Anggota</button>
+      <button class="tab-btn" type="button" onclick="showTab(event,'sp-pinjaman')" aria-selected="false">Data Pinjaman & Angsuran</button>
+    </div>
+
+    <div id="sp-ringkasan" class="tab-panel active" role="tabpanel">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
+        <div class="info-box" style="border-left: 4px solid #1abc9c;">
+          <h4>Total Kas Simpanan</h4>
+          <p style="font-size: 20px; font-weight: 700; color: #1abc9c; margin-top: 5px;">Rp 15.450.000</p>
+          <p style="font-size: 12px; color: var(--muted);">Dari simpanan pokok & wajib</p>
+        </div>
+        <div class="info-box" style="border-left: 4px solid #3498db;">
+          <h4>Dana Dipinjamkan</h4>
+          <p style="font-size: 20px; font-weight: 700; color: #3498db; margin-top: 5px;">Rp 6.000.000</p>
+          <p style="font-size: 12px; color: var(--muted);">Sedang berjalan di 3 anggota</p>
+        </div>
+        <div class="info-box" style="border-left: 4px solid #e67e22;">
+          <h4>Kas Tersedia (Idle)</h4>
+          <p style="font-size: 20px; font-weight: 700; color: #e67e22; margin-top: 5px;">Rp 9.450.000</p>
+          <p style="font-size: 12px; color: var(--muted);">Siap digunakan untuk pinjaman baru</p>
+        </div>
+      </div>
+      <div class="info-box">
+        <h4><i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> Ketentuan Simpan Pinjam</h4>
+        <p style="font-size: 13px; margin-top: 5px;">Bunga pinjaman disepakati sebesar 0% (tanpa riba) atau berupa bagi hasil administrasi ringan sesuai keputusan mufakat rapat kelompok. Maksimal masa pinjaman adalah 5 bulan.</p>
+      </div>
+    </div>
+
+    <div id="sp-simpanan" class="tab-panel" role="tabpanel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Anggota</th>
+              <th>Simpanan Pokok</th>
+              <th>Simpanan Wajib (Total)</th>
+              <th>Simpanan Sukarela</th>
+              <th>Total Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Junaidi (Ketua)</td>
+              <td>Rp 100.000</td>
+              <td>Rp 500.000</td>
+              <td>Rp 250.000</td>
+              <td><strong>Rp 850.000</strong></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Nanang</td>
+              <td>Rp 100.000</td>
+              <td>Rp 500.000</td>
+              <td>Rp 50.000</td>
+              <td><strong>Rp 650.000</strong></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Desir</td>
+              <td>Rp 100.000</td>
+              <td>Rp 500.000</td>
+              <td>Rp 0</td>
+              <td><strong>Rp 600.000</strong></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Supyan</td>
+              <td>Rp 100.000</td>
+              <td>Rp 450.000</td>
+              <td>Rp 100.000</td>
+              <td><strong>Rp 650.000</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="sp-pinjaman" class="tab-panel" role="tabpanel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Peminjam</th>
+              <th>Jumlah Pinjaman</th>
+              <th>Tanggal Pinjam</th>
+              <th>Sisa Angsuran</th>
+              <th>Jatuh Tempo</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Supyan</td>
+              <td>Rp 2.000.000</td>
+              <td>12 Jan 2026</td>
+              <td>Rp 400.000 (1x lagi)</td>
+              <td>12 Jun 2026</td>
+              <td><span class="badge" style="background: #eaf2f8; color: #2980b9;">Mencicil</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Agus Efendi</td>
+              <td>Rp 3.000.000</td>
+              <td>05 Feb 2026</td>
+              <td>Rp 1.800.000 (3x lagi)</td>
+              <td>05 Jul 2026</td>
+              <td><span class="badge" style="background: #eaf2f8; color: #2980b9;">Mencicil</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Hoirul Anam</td>
+              <td>Rp 1.000.000</td>
+              <td>20 Feb 2026</td>
+              <td>Rp 0</td>
+              <td>20 Mei 2026</td>
+              <td><span class="badge" style="background: #e8f8f5; color: #0f766e;">Lunas</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Muzakki</td>
+              <td>Rp 1.000.000</td>
+              <td>10 Mei 2026</td>
+              <td>Rp 1.000.000 (5x lagi)</td>
+              <td>10 Okt 2026</td>
+              <td><span class="badge" style="background: #fef9e7; color: #b7950b;">Baru</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
