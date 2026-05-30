@@ -3,281 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Keuangan & Simpan Pinjam KUB Perikanan</title>
+    <title>Integrasi Google Form & Spreadsheet</title>
     <style>
-        :root {
-            --primary-color: #0b5345;
-            --secondary-color: #117a65;
-            --accent-color: #e8f8f5;
-            --text-dark: #2c3e50;
-            --text-light: #ffffff;
-            --bg-light: #f2f4f4;
-            --border-color: #d5dbdb;
-            --warning-color: #e67e22;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
             padding: 20px;
-            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: var(--text-light);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 4px solid var(--primary-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            color: var(--primary-color);
-            font-size: 22pt;
-            text-transform: uppercase;
-        }
-
-        header p {
-            color: var(--secondary-color);
-            font-size: 11pt;
-            font-style: italic;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            border-left: 6px solid var(--secondary-color);
-            padding-left: 12px;
-            margin: 30px 0 15px 0;
-            font-size: 13pt;
-            text-transform: uppercase;
-        }
-
-        /* Grid Finansial */
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .summary-card {
-            background: var(--accent-color);
-            border: 1px solid var(--secondary-color);
-            border-radius: 8px;
+            width: 100%;
+            max-width: 800px;
+            background: #ffffff;
             padding: 20px;
-            text-align: center;
-        }
-
-        .summary-card h4 {
-            color: var(--text-dark);
-            font-size: 11pt;
-            margin-bottom: 8px;
-        }
-
-        .summary-card .amount {
-            font-size: 16pt;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        /* Styling Tabel */
-        .table-responsive {
-            overflow-x: auto;
-            margin-bottom: 25px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 9.5pt;
-        }
-
-        th {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            text-align: left;
-            padding: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-color);
-            vertical-align: middle;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .badge-status {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 8.5pt;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .badge-lancar { background-color: #d4efdf; color: #196f3d; }
-        .badge-pud { background-color: #ebf5fb; color: #2471a3; }
-
-        /* Form Simulasi */
-        .simulasi-box {
-            background: #fdfefe;
-            border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            box-sizing: border-box;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 10pt;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 10pt;
-        }
-
-        button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 10pt;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: var(--primary-color);
-        }
-
-        .result-box {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #fcf3cf;
-            border-left: 5px solid var(--warning-color);
-            font-size: 10pt;
-            display: none;
-        }
-
-        footer {
-            margin-top: 40px;
+        h2 {
+            color: #333;
             text-align: center;
-            font-size: 9pt;
-            color: #7f8c8d;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Responsive iframe untuk Spreadsheet */
+        .spreadsheet-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .spreadsheet-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Sistem Manajemen Simpan Pinjam Keuangan</h1>
-        <h2>Konsolidasi Tabungan & Kredit Mikro 4 KUB Perikanan Binaan</h2>
-        <p>Akses Terintegrasi Dana Usaha Nelayan Pokkan Mandiri KKP</p>
-    </header>
-
-    <h2 class="section-title">I. Ringkasan Kas & Kapasitas Fiskal Bersama</h2>
-    <div class="summary-grid">
-        <div class="summary-card">
-            <h4>Total Kas Simpanan Masuk</h4>
-            <div class="amount">Rp 18.540.000</div>
-        </div>
-        <div class="summary-card">
-            <h4>Dana Terpinjam Anggota</h4>
-            <div class="amount">Rp 7.500.000</div>
-        </div>
-        <div class="summary-card">
-            <h4>Alokasi Kas Idle Nelayan</h4>
-            <div class="amount">Rp 11.040.000</div>
+    <div class="container">
+        <h2>Formulir Input Data</h2>
+        <div class="iframe-wrapper">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLScVhMqB59hBAPAX2giKikcVtKB_yK_4z3AoBd_yGZUzjXVcJw/viewform?embedded=true" 
+                width="640" 
+                height="1129" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0"
+                sandbox="allow-apps allow-forms allow-scripts allow-same-origin">
+                Memuat…
+            </iframe>
         </div>
     </div>
 
-    <h2 class="section-title">II. Jurnal Buku Kas Simpan Pinjam Per Kelompok Usaha</h2>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nama KUB / Wilayah</th>
-                    <th>No. Registrasi Kelompok</th>
-                    <th>Estimasi Omset Tahunan</th>
-                    <th>Alokasi Pokok Tabungan (1%)</th>
-                    <th>Maksimal Plafon Kredit/Anggota</th>
-                    <th>Status Kas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>KUB Intimung Taka</strong><br>Bulungan, Kaltara</td>
-                    <td>1.2.65.01.0814.0914</td>
-                    <td>Rp 60.000.000 (Estimasi)</td>
-                    <td>Rp 600.000</td>
-                    <td>Rp 3.000.000</td>
-                    <td><span class="badge-status badge-lancar">Stabil / Mandiri</span></td>
-                </tr>
-                <tr>
-                    <td><strong>KUB Angsa Laut 01</strong><br>Merauke, Papua Selatan</td>
-                    <td>1.2.93.01.0223.0223</td>
-                    <td>Rp 50.000.000 (Kumulatif 2023)</td>
-                    <td>Rp 500.000</td>
-                    <td>Rp 2.500.000</td>
-                    <td><span class="badge-status badge-lancar">Aktif / Berjalan</span></td>
-                </tr>
-                <tr>
-                    <td><strong>KUB Usaha Nelayan</strong><br>Konawe, Sulawesi Tenggara</td>
-                    <td>1.2.74.02.17.0215.0516</td>
-                    <td>Rp 35.000.000 (PUD Rawa)</td>
-                    <td>Rp 350.000</td>
-                    <td>Rp 1.500.000</td>
-                    <td><span class="badge-status badge-pud">Khusus PUD Air Tawar</span></td>
-                </tr>
-                <tr>
-                    <td><strong>KUB Sumber Makmur</strong><br>Bangkalan, Jawa Timur</td>
-                    <td>411.61/022/433.105/2013</td>
-                    <td>Rp 40.000.000 (Jaring Payang)</td>
-                    <td>Rp 400.000</td>
-                    <td>Rp 2.000.000</td>
-                    <td><span class="badge-status badge-lancar">Aktif / Bulanan</span></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <h2>Respons & Data Spreadsheet</h2>
+        <div class="spreadsheet-wrapper">
+            <iframe 
+                src="https://docs.google.com/sheets/d/e/2PACX-1vTQUs8yLCAlhTpfEaijrgrtNwUvsq___-IUnrG3L2I6fFjSG6TDcH16kqEIOfVvsG3sDMucFg_j0XsX/pubhtml?widget=true&amp;headers=false"
+                sandbox="allow-scripts allow-same-origin">
+                Memuat…
+            </iframe>
+        </div>
     </div>
 
-    <h2 class="section-title">III. Rincian Kebijakan Operasional Keuangan Mikro</h2>
-    <div style="font-size: 10pt; margin-bottom: 20px;">
-        <p style="margin-bottom: 8px;"><strong>1. KUB Intimung Taka (Bulungan):</strong> Pendanaan simpan pinjam diprioritaskan bagi 12 anggota untuk kebutuhan darurat perbaikan mesin kapal perikanan (Satminkal BPPP Bitung) serta pengadaan bahan bakar jaring insang (Gill net).</p>
-        <p style="margin-bottom: 8px;"><strong>2. KUB Angsa Laut 01 (Merauke):</strong> Aturan simpanan disetorkan pada pertemuan rutin wajib (2-3 kali sebulan). Skema pembiayaan digunakan secara bergantian bagi 11 anggota untuk mengimbangi fluktuasi omset akibat sistem sewa/pemberdayaan armada bersama perahu Semang 15 PK.</p>
-        <p style="margin-bottom: 8px;"><strong>3. KUB Usaha Nelayan (Konawe):</strong> Alokasi kas bersumber dari tabungan nelayan rawa PUD dengan rata-rata omset anggota sebesar Rp 2,
+</body>
+</html>
