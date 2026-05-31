@@ -3,176 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Integrasi Data & Looker Studio</title>
+    <title>Sandbox: Google Form & Spreadsheet</title>
     <style>
-        /* Gaya Dasar Halaman */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Gaya Navigasi Menu Sticky */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #1a73e8;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        nav ul li a:hover {
-            background-color: #1557b0;
-            border-bottom: 3px solid #ffffff;
-            padding-bottom: 12px; /* Menjaga tinggi menu tetap seimbang */
-        }
-
-        /* Pembungkus Konten Utama (Diberi jarak atas karena Navigasi di-fix) */
-        .content-area {
-            margin-top: 80px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
-            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Wadah Utama Setiap Bagian */
         .container {
             width: 100%;
             max-width: 800px;
             background: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             box-sizing: border-box;
-            /* Atribut ini penting agar efek scroll navigasi berhenti tepat di judul */
-            scroll-margin-top: 90px; 
         }
 
         h2 {
-            color: #1a73e8;
-            font-size: 1.4rem;
+            color: #333;
+            border-bottom: 2px solid #0078d4;
+            padding-bottom: 8px;
             margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e8eaed;
-            padding-bottom: 10px;
         }
 
-        /* Pembungkus Iframe Responsif */
         .iframe-wrapper {
             position: relative;
             width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .iframe-wrapper iframe {
-            max-width: 100%;
-            border: none;
-            border-radius: 4px;
-        }
-
-        /* Khusus Aspek Rasio Tinggi untuk Spreadsheet & Looker */
-        .responsive-wrapper {
-            position: relative;
-            padding-bottom: 65%; /* Menyesuaikan rasio tampilan */
-            height: 0;
             overflow: hidden;
-            border-radius: 4px;
-            border: 1px solid #e8eaed;
+            margin-top: 15px;
         }
 
-        .responsive-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Khusus untuk Spreadsheet agar bisa scroll horizontal jika layarnya kecil */
+        .sheet-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        iframe {
             width: 100%;
-            height: 100%;
             border: none;
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="#formulir">Input Form</a></li>
-            <li><a href="#spreadsheet">Data Spreadsheet</a></li>
-            <li><a href="#looker">Laporan Looker Studio</a></li>
-        </ul>
-    </nav>
-
-    <div class="content-area">
-
-        <div id="formulir" class="container">
-            <h2>Formulir Penginputan Data</h2>
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScVhMqB59hBAPAX2giKikcVtKB_yK_4z3AoBd_yGZUzjXVcJw/viewform?embedded=true" 
-                    width="640" 
-                    height="1000" 
-                    sandbox="allow-apps allow-forms allow-scripts allow-same-origin allow-popups">
-                    Memuat…
-                </iframe>
-            </div>
+    <div class="container">
+        <h2>Formulir Input Data</h2>
+        <div class="iframe-wrapper">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
+                height="2019" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Memuat…
+            </iframe>
         </div>
+    </div>
 
-        <div id="spreadsheet" class="container">
-            <h2>Data Terkini (Spreadsheet)</h2>
-            <div class="responsive-wrapper">
-                <iframe 
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUs8yLCAlhTpfEaijrgrtNwUvsq___-IUnrG3L2I6fFjSG6TDcH16kqEIOfVvsG3sDMucFg_j0XsX/pubhtml?widget=true&amp;headers=false"
-                    sandbox="allow-scripts allow-same-origin">
-                    Memuat…
-                </iframe>
-            </div>
+    <div class="container">
+        <h2>Respons / Data Spreadsheet</h2>
+        <div class="iframe-wrapper sheet-wrapper">
+            <iframe 
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml?widget=true&amp;headers=false" 
+                height="500" 
+                frameborder="0">
+                Memuat…
+            </iframe>
         </div>
-
-        <div id="looker" class="container">
-            <h2>Sajian Data Looker Studio</h2>
-            <div class="responsive-wrapper">
-                <iframe 
-                    src="https://datastudio.google.com/embed/reporting/5e594b0a-eb48-4bb0-bd35-43419c130a67/page/page_12345" 
-                    width="600" 
-                    height="450" 
-                    style="border:0" 
-                    allowfullscreen 
-                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-                    Memuat…
-                </iframe>
-            </div>
-        </div>
-
     </div>
 
 </body>
