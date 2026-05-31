@@ -23,6 +23,7 @@
             padding: 12px 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap; /* Agar responsif jika menu penuh di layar kecil */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
             z-index: 1000;
         }
@@ -31,7 +32,7 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            margin: 0 15px;
+            margin: 5px 15px;
             padding: 8px 16px;
             border-radius: 4px;
             transition: background-color 0.3s ease;
@@ -93,6 +94,7 @@
 
     <nav>
         <a href="#form-section">Input Form</a>
+        <a href="#kepuasan-section">Tingkat Kepuasan</a>
         <a href="#sheet-section">Data Spreadsheet</a>
         <a href="#looker-section">Looker Studio</a>
     </nav>
@@ -105,6 +107,20 @@
                 <iframe 
                     src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
                     height="2019" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Memuat…
+                </iframe>
+            </div>
+        </div>
+
+        <div id="kepuasan-section" class="container">
+            <h2>Tingkat Kepuasan Sistem Pinjam Kelompok</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdDRtVqTzxXR8q9p_9zHnKSI4_6SgczhxFNLJmdQNMLNwBDzQ/viewform?embedded=true" 
+                    height="2323" 
                     frameborder="0" 
                     marginheight="0" 
                     marginwidth="0">
@@ -141,6 +157,6 @@
         </div>
 
     </div>
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdDRtVqTzxXR8q9p_9zHnKSI4_6SgczhxFNLJmdQNMLNwBDzQ/viewform?embedded=true" width="640" height="2323" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
+
 </body>
 </html>
