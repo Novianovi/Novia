@@ -3,27 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandbox: Google Form & Spreadsheet</title>
+    <title>Sandbox: Form, Spreadsheet & Looker Studio</title>
     <style>
+        /* Reset & Base Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f6f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Menu (Sticky) */
+        nav {
+            position: -webkit-sticky; /* Untuk Safari */
+            position: sticky;
+            top: 0;
+            background-color: #0078d4;
+            padding: 12px 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 15px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #005a9e;
+        }
+
+        /* Container & Layout */
+        .main-content {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 30px 20px;
         }
 
         .container {
             width: 100%;
             max-width: 800px;
             background: #ffffff;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
             box-sizing: border-box;
+            /* Memberikan ruang agar scroll navigasi pas di judul section */
+            scroll-margin-top: 80px; 
         }
 
         h2 {
@@ -40,8 +76,8 @@
             margin-top: 15px;
         }
 
-        /* Khusus untuk Spreadsheet agar bisa scroll horizontal jika layarnya kecil */
-        .sheet-wrapper {
+        /* Wrapper khusus konten responsif/bisa di-scroll */
+        .scroll-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -55,30 +91,55 @@
 </head>
 <body>
 
-    <div class="container">
-        <h2>Formulir Input Data</h2>
-        <div class="iframe-wrapper">
-            <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
-                height="2019" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0">
-                Memuat…
-            </iframe>
-        </div>
-    </div>
+    <nav>
+        <a href="#form-section">Input Form</a>
+        <a href="#sheet-section">Data Spreadsheet</a>
+        <a href="#looker-section">Looker Studio</a>
+    </nav>
 
-    <div class="container">
-        <h2>Respons / Data Spreadsheet</h2>
-        <div class="iframe-wrapper sheet-wrapper">
-            <iframe 
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml?widget=true&amp;headers=false" 
-                height="500" 
-                frameborder="0">
-                Memuat…
-            </iframe>
+    <div class="main-content">
+
+        <div id="form-section" class="container">
+            <h2>Formulir Input Data</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
+                    height="2019" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Memuat…
+                </iframe>
+            </div>
         </div>
+
+        <div id="sheet-section" class="container">
+            <h2>Respons / Data Spreadsheet</h2>
+            <div class="iframe-wrapper scroll-wrapper">
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml?widget=true&amp;headers=false" 
+                    height="500" 
+                    frameborder="0">
+                    Memuat…
+                </iframe>
+            </div>
+        </div>
+
+        <div id="looker-section" class="container">
+            <h2>Sajian Data Looker Studio</h2>
+            <div class="iframe-wrapper scroll-wrapper">
+                <iframe 
+                    src="https://datastudio.google.com/embed/reporting/5e2ab76f-d512-4dcf-818c-4230e5630242/page/page_12345" 
+                    height="450" 
+                    frameborder="0" 
+                    style="border:0" 
+                    allowfullscreen 
+                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+                    Memuat…
+                </iframe>
+            </div>
+        </div>
+
     </div>
 
 </body>
