@@ -3,25 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integrasi Google Form dan Spreadsheet</title>
+    <title>Sistem Integrasi Multi-Form dan Spreadsheet</title>
     <style>
+        /* Gaya Umum */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f6f9;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .container {
+
+        /* Navigasi / Menu Atas */
+        nav {
+            background-color: #007bff;
             width: 100%;
-            max-width: 800px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Konten Utama */
+        .main-content {
+            padding: 20px;
+            width: 100%;
+            max-width: 850px;
+            box-sizing: border-box;
+        }
+        .container {
             background: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            /* Jarak berhentinya scroll agar tidak tertutup navbar */
+            scroll-margin-top: 70px; 
         }
         h2 {
             color: #333;
@@ -35,7 +77,6 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
-            margin-bottom: 15px;
         }
         iframe {
             border: none;
@@ -46,34 +87,77 @@
 </head>
 <body>
 
-    <div class="container">
-        <h2>Formulir Penginputan Data</h2>
-        <div class="iframe-wrapper">
-            <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
-                width="700" 
-                height="520" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0"
-                sandbox="allow-forms opacity-animate allow-popups allow-same-origin allow-scripts">
-                Memuat…
-            </iframe>
-        </div>
-    </div>
+    <nav>
+        <ul>
+            <li><a href="#form1">Formulir 1</a></li>
+            <li><a href="#form2">Formulir 2</a></li>
+            <li><a href="#sheet1">Data Sheet 1</a></li>
+            <li><a href="#sheet2">Data Sheet 2</a></li>
+        </ul>
+    </nav>
 
-    <div class="container">
-        <h2>Data Spreadsheet (Hasil Respon)</h2>
-        <div class="iframe-wrapper">
-            <iframe 
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml" 
-                width="100%" 
-                height="500" 
-                frameborder="0"
-                sandbox="allow-same-origin allow-scripts allow-popups">
-                Memuat Data…
-            </iframe>
+    <div class="main-content">
+
+        <div id="form1" class="container">
+            <h2>Formulir Penginputan Data - Bagian 1</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
+                    width="700" 
+                    height="520" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts">
+                    Memuat Form 1…
+                </iframe>
+            </div>
         </div>
+
+        <div id="form2" class="container">
+            <h2>Formulir Penginputan Data - Bagian 2</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdDRtVqTzxXR8q9p_9zHnKSI4_6SgczhxFNLJmdQNMLNwBDzQ/viewform?embedded=true" 
+                    width="700" 
+                    height="520" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts">
+                    Memuat Form 2…
+                </iframe>
+            </div>
+        </div>
+
+        <div id="sheet1" class="container">
+            <h2>Data Spreadsheet - Tabel 1</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml" 
+                    width="100%" 
+                    height="500" 
+                    frameborder="0"
+                    sandbox="allow-same-origin allow-scripts allow-popups">
+                    Memuat Data Tabel 1…
+                </iframe>
+            </div>
+        </div>
+
+        <div id="sheet2" class="container">
+            <h2>Data Spreadsheet - Tabel 2</h2>
+            <div class="iframe-wrapper">
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT4FNtRldX5PO1oJNZ5gHXcKeBhQcCu6uZXQw-RCo0T6tvblgF6OFKdlStdeZNFknKCdWdk8y7tHakT/pubhtml" 
+                    width="100%" 
+                    height="500" 
+                    frameborder="0"
+                    sandbox="allow-same-origin allow-scripts allow-popups">
+                    Memuat Data Tabel 2…
+                </iframe>
+            </div>
+        </div>
+
     </div>
 
 </body>
