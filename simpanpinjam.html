@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Manajamen Data Terintegrasi</title>
+    <title>Sistem Manajemen Data Terintegrasi</title>
     <style>
-        /* Gaya Dasar & Warna Modern */
+        /* Gaya Dasar & Tema Warna Modern */
         :root {
             --primary-color: #007bff;
             --primary-hover: #0056b3;
-            --bg-color: #f8f9fa;
+            --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --text-color: #333333;
             --border-color: #e9ecef;
@@ -26,6 +26,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
         /* Navigasi Sticky dengan Tombol */
@@ -37,7 +38,7 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-bottom: 1px solid var(--border-color);
-            padding: 10px 0;
+            padding: 12px 0;
         }
         nav ul {
             list-style-type: none;
@@ -47,49 +48,54 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px; /* Jarak antar tombol */
-        }
-        nav ul li {
-            margin: 0;
+            gap: 15px;
         }
         
-        /* Desain Umum Tombol Navigasi */
-        nav ul li a {
+        /* Desain Tombol Navigasi */
+        nav ul li button {
             display: inline-block;
-            padding: 10px 20px;
-            text-decoration: none;
+            padding: 12px 24px;
             font-weight: 600;
             font-size: 14px;
-            border-radius: 6px;
+            border-radius: 8px;
+            cursor: pointer;
             transition: all 0.2s ease-in-out;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: none;
+            outline: none;
         }
 
-        /* Spesifik Tombol Beranda */
-        nav ul li a.btn-home {
+        /* Tombol Beranda (Hijau) */
+        .btn-home {
             background-color: var(--home-btn-color);
             color: white;
-            border: 1px solid var(--home-btn-color);
         }
-        nav ul li a.btn-home:hover {
+        .btn-home:hover {
             background-color: var(--home-btn-hover);
-            border-color: var(--home-btn-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
-        /* Spesifik Tombol Navigasi Konten */
-        nav ul li a.btn-nav {
+        /* Tombol Menu Utama (Putih/Biru) */
+        .btn-nav {
             background-color: #ffffff;
             color: #495057;
             border: 1px solid #ced4da;
         }
-        nav ul li a.btn-nav:hover {
+        .btn-nav:hover {
             color: white;
             background-color: var(--primary-color);
             border-color: var(--primary-color);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
-        nav ul li a.btn-nav:active {
+        
+        /* Gaya Tombol Saat Aktif/Terpilih */
+        .btn-nav.active {
+            color: white;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        nav ul li button:active {
             transform: translateY(1px);
         }
 
@@ -99,20 +105,47 @@
             width: 100%;
             max-width: 900px;
             box-sizing: border-box;
+            flex-grow: 1;
         }
 
-        /* Bagian Utama (Section) */
-        section {
-            margin-bottom: 50px;
-            scroll-margin-top: 100px; /* Jarak pas saat di-scroll dari navigasi tombol */
+        /* Mengatur Efek Sembunyikan Konten */
+        .tab-content {
+            display: none; /* Default awal disembunyikan */
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        /* Menampilkan Konten Aktif */
+        .tab-content.active-content {
+            display: block;
         }
 
+        /* Halaman Beranda / Welcome Screen */
+        .welcome-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+        .welcome-card h1 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+        .welcome-card p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        /* Judul Bagian */
         .section-title {
             font-size: 24px;
             font-weight: 700;
             color: #222;
-            margin-bottom: 20px;
-            padding-left: 10px;
+            margin-bottom: 25px;
+            padding-left: 12px;
             border-left: 5px solid var(--primary-color);
         }
 
@@ -122,7 +155,7 @@
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border: 1px solid var(--border-color);
         }
         
@@ -142,7 +175,7 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
-            border-radius: 6px;
+            border-radius: 8px;
             background-color: #fafafa;
         }
 
@@ -151,23 +184,33 @@
             width: 100%;
         }
 
-        /* Responsif untuk HP */
+        /* Animasi Transisi Halus */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Kustomisasi Responsif untuk Handphone */
         @media (max-width: 600px) {
             nav {
-                padding: 8px 5px;
+                padding: 10px 5px;
             }
             nav ul {
                 gap: 8px;
             }
-            nav ul li a {
-                padding: 8px 12px;
+            nav ul li button {
+                padding: 10px 14px;
                 font-size: 12px;
+                border-radius: 6px;
             }
             .main-content {
                 padding: 15px 10px;
             }
             .card {
                 padding: 15px;
+            }
+            .welcome-card {
+                padding: 30px 15px;
             }
         }
     </style>
@@ -176,17 +219,24 @@
 
     <nav>
         <ul>
-            <li><a href="#" class="btn-home">🏠 Kembali ke Beranda</a></li>
-            <li><a href="#kluster1" class="btn-nav">📝 Form Pengisian & Data</a></li>
-            <li><a href="#kluster2" class="btn-nav">🏅 Form Penilaian & Data</a></li>
-            <li><a href="#analisis-dashboard" class="btn-nav">📊 Looker Studio Dashboard</a></li>
+            <li><button onclick="bukaTab('beranda', this)" class="btn-home">🏠 Kembali ke Beranda</button></li>
+            <li><button onclick="bukaTab('kluster1', this)" class="btn-nav">📝 Form Pengisian & Data</button></li>
+            <li><button onclick="bukaTab('kluster2', this)" class="btn-nav">🏅 Form Penilaian & Data</button></li>
+            <li><button onclick="bukaTab('analisis-dashboard', this)" class="btn-nav">📊 Looker Studio Dashboard</button></li>
         </ul>
     </nav>
 
     <div class="main-content">
 
-        <section id="kluster1">
-            <div class="section-title">Bagian 1: Form Pengisian</div>
+        <div id="beranda" class="tab-content active-content">
+            <div class="welcome-card">
+                <h1>Selamat Datang di Portal Data</h1>
+                <p>Silakan klik tombol menu di atas untuk mengakses formulir penginputan, penilaian, atau melihat dasbor analisis data.</p>
+            </div>
+        </div>
+
+        <div id="kluster1" class="tab-content">
+            <div class="section-title">Bagian 1: Form Pengisian & Data</div>
             
             <div class="card">
                 <h3>📝 Formulir Penginputan Data (Bagian 1)</h3>
@@ -194,9 +244,6 @@
                     <iframe 
                         src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
                         height="540" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
                         sandbox="allow-forms allow-popups allow-same-origin allow-scripts">
                         Memuat Form 1…
                     </iframe>
@@ -209,17 +256,16 @@
                     <iframe 
                         src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml" 
                         height="450" 
-                        frameborder="0"
                         sandbox="allow-same-origin allow-scripts allow-popups">
                         Memuat Data Tabel 1…
                     </iframe>
                 </div>
             </div>
-        </section>
+        </div>
 
 
-        <section id="kluster2">
-            <div class="section-title">Bagian 2: Form Penilaian</div>
+        <div id="kluster2" class="tab-content">
+            <div class="section-title">Bagian 2: Form Penilaian & Data</div>
             
             <div class="card">
                 <h3>📝 Formulir Tingkat Kepuasan (Bagian 2)</h3>
@@ -227,9 +273,6 @@
                     <iframe 
                         src="https://docs.google.com/forms/d/e/1FAIpQLSdDRtVqTzxXR8q9p_9zHnKSI4_6SgczhxFNLJmdQNMLNwBDzQ/viewform?embedded=true" 
                         height="540" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0"
                         sandbox="allow-forms allow-popups allow-same-origin allow-scripts">
                         Memuat Form 2…
                     </iframe>
@@ -242,16 +285,15 @@
                     <iframe 
                         src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT4FNtRldX5PO1oJNZ5gHXcKeBhQcCu6uZXQw-RCo0T6tvblgF6OFKdlStdeZNFknKCdWdk8y7tHakT/pubhtml" 
                         height="450" 
-                        frameborder="0"
                         sandbox="allow-same-origin allow-scripts allow-popups">
                         Memuat Data Tabel 2…
                     </iframe>
                 </div>
             </div>
-        </section>
+        </div>
 
 
-        <section id="analisis-dashboard">
+        <div id="analisis-dashboard" class="tab-content">
             <div class="section-title">Bagian 3: Analisis Eksekutif</div>
             <div class="card">
                 <h3>📉 Dashboard Visualisasi Interaktif - Looker Studio</h3>
@@ -259,7 +301,6 @@
                     <iframe 
                         src="https://datastudio.google.com/embed/reporting/ce196f54-2b18-48a1-adce-07db12f83f64/page/page_12345" 
                         height="480" 
-                        frameborder="0" 
                         style="border:0" 
                         allowfullscreen 
                         sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
@@ -267,9 +308,36 @@
                     </iframe>
                 </div>
             </div>
-        </section>
+        </div>
 
     </div>
+
+    <script>
+        function bukaTab(tabId, elemenTombol) {
+            // 1. Sembunyikan semua konten terlebih dahulu
+            var semuaKonten = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < semuaKonten.length; i++) {
+                semuaKonten[i].classList.remove("active-content");
+            }
+
+            // 2. Hilangkan status warna aktif dari semua tombol menu utama
+            var semuaTombol = document.getElementsByClassName("btn-nav");
+            for (var j = 0; j < semuaTombol.length; j++) {
+                semuaTombol[j].classList.remove("active");
+            }
+
+            // 3. Tampilkan konten yang dipilih berdasarkan ID-nya
+            document.getElementById(tabId).classList.add("active-content");
+
+            // 4. Berikan warna aktif pada tombol yang sedang diklik (kecuali tombol beranda)
+            if (elemenTombol.classList.contains("btn-nav")) {
+                elemenTombol.classList.add("active");
+            }
+            
+            // 5. Otomatis scroll sedikit ke atas konten agar langsung terlihat fokus
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
