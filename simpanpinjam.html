@@ -13,6 +13,8 @@
             --card-bg: #ffffff;
             --text-color: #333333;
             --border-color: #e9ecef;
+            --home-btn-color: #28a745;
+            --home-btn-hover: #218838;
         }
 
         body {
@@ -26,7 +28,7 @@
             align-items: center;
         }
 
-        /* Navigasi Sticky yang Elegan */
+        /* Navigasi Sticky dengan Tombol */
         nav {
             background-color: var(--card-bg);
             width: 100%;
@@ -35,6 +37,7 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-bottom: 1px solid var(--border-color);
+            padding: 10px 0;
         }
         nav ul {
             list-style-type: none;
@@ -42,27 +45,52 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
+            gap: 12px; /* Jarak antar tombol */
         }
+        nav ul li {
+            margin: 0;
+        }
+        
+        /* Desain Umum Tombol Navigasi */
         nav ul li a {
-            display: block;
-            color: #555;
-            text-align: center;
-            padding: 16px 24px;
+            display: inline-block;
+            padding: 10px 20px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        nav ul li a:hover {
-            color: var(--primary-color);
-            background-color: rgba(0, 123, 255, 0.05);
+
+        /* Spesifik Tombol Beranda */
+        nav ul li a.btn-home {
+            background-color: var(--home-btn-color);
+            color: white;
+            border: 1px solid var(--home-btn-color);
         }
-        /* Efek fokus saat menu aktif di-scroll */
-        nav ul li a:active, nav ul li a:focus {
-            border-bottom: 3px solid var(--primary-color);
-            color: var(--primary-color);
+        nav ul li a.btn-home:hover {
+            background-color: var(--home-btn-hover);
+            border-color: var(--home-btn-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Spesifik Tombol Navigasi Konten */
+        nav ul li a.btn-nav {
+            background-color: #ffffff;
+            color: #495057;
+            border: 1px solid #ced4da;
+        }
+        nav ul li a.btn-nav:hover {
+            color: white;
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+        nav ul li a.btn-nav:active {
+            transform: translateY(1px);
         }
 
         /* Konten Utama */
@@ -76,7 +104,7 @@
         /* Bagian Utama (Section) */
         section {
             margin-bottom: 50px;
-            scroll-margin-top: 80px; /* Jarak pas saat di-scroll dari navigasi */
+            scroll-margin-top: 100px; /* Jarak pas saat di-scroll dari navigasi tombol */
         }
 
         .section-title {
@@ -125,9 +153,15 @@
 
         /* Responsif untuk HP */
         @media (max-width: 600px) {
+            nav {
+                padding: 8px 5px;
+            }
+            nav ul {
+                gap: 8px;
+            }
             nav ul li a {
-                padding: 12px 16px;
-                font-size: 13px;
+                padding: 8px 12px;
+                font-size: 12px;
             }
             .main-content {
                 padding: 15px 10px;
@@ -142,16 +176,17 @@
 
     <nav>
         <ul>
-            <li><a href="#kluster1">Layanan Data 1 (Form pengisian)</a></li>
-            <li><a href="#kluster2">Layanan Data 2 (Form Penilaian)</a></li>
-            <li><a href="#analisis-dashboard">Looker Studio Dashboard</a></li>
+            <li><a href="#" class="btn-home">🏠 Kembali ke Beranda</a></li>
+            <li><a href="#kluster1" class="btn-nav">📝 Form Pengisian & Data</a></li>
+            <li><a href="#kluster2" class="btn-nav">🏅 Form Penilaian & Data</a></li>
+            <li><a href="#analisis-dashboard" class="btn-nav">📊 Looker Studio Dashboard</a></li>
         </ul>
     </nav>
 
     <div class="main-content">
 
         <section id="kluster1">
-            <div class="section-title">Bagian 1: Form pengisian</div>
+            <div class="section-title">Bagian 1: Form Pengisian</div>
             
             <div class="card">
                 <h3>📝 Formulir Penginputan Data (Bagian 1)</h3>
@@ -184,7 +219,7 @@
 
 
         <section id="kluster2">
-            <div class="section-title">Bagian 2: Form penilaian</div>
+            <div class="section-title">Bagian 2: Form Penilaian</div>
             
             <div class="card">
                 <h3>📝 Formulir Tingkat Kepuasan (Bagian 2)</h3>
