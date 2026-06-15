@@ -1,169 +1,165 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sandbox: Form, Spreadsheet & Looker Studio</title>
+    <title>Dashboard Monitoring & Kepuasan</title>
     <style>
-        /* Reset & Base Styles */
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --primary-color: #4285f4;
+            --border-radius: 8px;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            padding: 20px;
         }
 
-        /* Navigation Menu (Sticky) */
-        nav {
-            position: -webkit-sticky; /* Untuk Safari */
-            position: sticky;
-            top: 0;
-            background-color: #0078d4;
-            padding: 12px 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; /* Agar responsif jika menu penuh di layar kecil */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
+        header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 5px 15px;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+        header h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
 
-        nav a:hover {
-            background-color: #005a9e;
-        }
-
-        /* Container & Layout */
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            box-sizing: border-box;
-            /* Memberikan ruang agar scroll navigasi pas di judul section */
-            scroll-margin-top: 80px; 
-        }
-
-        h2 {
-            color: #333;
-            border-bottom: 2px solid #0078d4;
-            padding-bottom: 8px;
+        header p {
+            color: #7f8c8d;
             margin-top: 0;
         }
 
-        .iframe-wrapper {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        .grid-two-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #34495e;
+            font-size: 1.1rem;
+        }
+
+        .iframe-container {
             position: relative;
             width: 100%;
             overflow: hidden;
-            margin-top: 15px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
         }
 
-        /* Wrapper khusus konten responsif/bisa di-scroll */
-        .scroll-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+        /* Tinggi spesifik untuk kenyamanan visual */
+        .height-form { height: 550px; }
+        .height-sheet { height: 500px; }
+        .height-studio { height: 600px; }
 
         iframe {
             width: 100%;
+            height: 100%;
             border: none;
-            display: block;
+        }
+
+        /* Responsif untuk layar HP */
+        @media (max-width: 600px) {
+            .grid-two-columns {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-    <a href="index.html" style="background-color: #e67e22;"><i class="fas fa-home"></i> Beranda</a>
-    
-    <a href="#form-section">Input Form</a>
-    <a href="#kepuasan-section">Tingkat Kepuasan</a>
-    <a href="#sheet-section">Data Spreadsheet</a>
-    <a href="#looker-section">Looker Studio</a>
-</nav>
+    <header>
+        <h1>Dashboard Integrasi Data</h1>
+        <p>Manajemen Formulir, Spreadsheet, dan Analisis Data Studio</p>
+    </header>
 
-    <div class="main-content">
+    <div class="container">
 
-        <div id="form-section" class="container">
-            <h2>Formulir Input Data</h2>
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfZV9gT6iZRiCIWHV48GlOulTJD4QUX4Yog3pE5DT1r05ZIzA/viewform?embedded=true" 
-                    height="2019" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0">
-                    Memuat…
-                </iframe>
+        <section>
+            <div class="section-title">Formulir Utama & Data Masuk</div>
+            <div class="grid-two-columns">
+                <div class="card">
+                    <h3>Formulir Input Data</h3>
+                    <div class="iframe-container height-form">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeHt04A1_WW72Kihrl2QMxBqSgnU8KZTsHMr0tbrEVBJHCstw/viewform?embedded=true">Memuat…</iframe>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Respon Spreadsheet Utama</h3>
+                    <div class="iframe-container height-sheet">
+                        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPwP1Ahu_eB2r-DM0rBZ1pEY9Bg05X5PYq7m4s6kt0hnPRTdpnIVxXqzK7dG4kihSNo60-bZi21G5Q/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div id="kepuasan-section" class="container">
-            <h2>Tingkat Kepuasan Sistem Pinjam Kelompok</h2>
-            <div class="iframe-wrapper">
-                <iframe 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfVClaSaNDN3qq6TpUFlYgRUNQ-V51V6YKM5BhTBRUHDX-Q7A/viewform?usp=dialog"
-                    height="500" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0">
-                    Memuat…
-                </iframe>
+        <section>
+            <div class="section-title">Visualisasi & Laporan Analitik</div>
+            <div class="card">
+                <h3>Looker Studio Report</h3>
+                <div class="iframe-container height-studio">
+                    <iframe src="https://datastudio.google.com/embed/reporting/dbb82fb9-2858-49e8-a92a-0da8cff534f9/page/page_12345" allowfullscreen>Memuat…</iframe>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div id="sheet-section" class="container">
-            <h2>Respons / Data Spreadsheet</h2>
-            <div class="iframe-wrapper scroll-wrapper">
-                <iframe 
-                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQpr_thg_SR74w-ANSCE0_VRBO6EUuSeUFeCb3efjG7YnfNg6YJEBNbtO5PAbrqYv21OTMQt8XGcZif/pubhtml?widget=true&amp;headers=false" 
-                    height="500" 
-                    frameborder="0">
-                    Memuat…
-                </iframe>
-                 <iframe 
-                   src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVEGFAd_dbO73DT2_UVkd6PQDDY0FuAVS-be0EyGclWnTjWzq2moy6E66QDxi4pAEMWIrVfwB3OJCa/pubhtml?widget=true&amp;headers=false" 
-                    height="500" 
-                    frameborder="0">
-                    Memuat…
-                </iframe>
-            </div>
-        </div>
+        <section>
+            <div class="section-title">Survei Tingkat Kepuasan</div>
+            <div class="grid-two-columns">
+                <div class="card">
+                    <h3>Formulir Kepuasan</h3>
+                    <div class="iframe-container height-form">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVClaSaNDN3qq6TpUFlYgRUNQ-V51V6YKM5BhTBRUHDX-Q7A/viewform?embedded=true">Memuat…</iframe>
+                    </div>
+                </div>
 
-        <div id="looker-section" class="container">
-            <h2>Sajian Data Looker Studio</h2>
-            <div class="iframe-wrapper scroll-wrapper">
-                <iframe 
-                    src="https://datastudio.google.com/embed/reporting/5e2ab76f-d512-4dcf-818c-4230e5630242/page/page_12345" 
-                    height="450" 
-                    frameborder="0" 
-                    style="border:0" 
-                    allowfullscreen 
-                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-                    Memuat…
-                </iframe>
+                <div class="card">
+                    <h3>Respon Spreadsheet Kepuasan</h3>
+                    <div class="iframe-container height-sheet">
+                        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVEGFAd_dbO73DT2_UVkd6PQDDY0FuAVS-be0EyGclWnTjWzq2moy6E66QDxi4pAEMWIrVfwB3OJCa/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
     </div>
 
