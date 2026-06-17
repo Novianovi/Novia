@@ -10,7 +10,7 @@
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --text-color: #333333;
-            --home-color: #34a853; /* Warna hijau khas untuk tombol Home */
+            --home-color: #34a853; /* Warna hijau untuk membedakan tombol Beranda */
         }
 
         body {
@@ -44,27 +44,22 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            gap: 5px;
         }
 
-        /* Gaya Khusus Tombol Home */
+        /* Gaya Khusus Tombol Kembali ke Beranda */
         .home-btn {
             padding: 15px 25px;
-            border: none;
-            background: none;
             font-size: 16px;
             font-weight: 700;
             color: var(--home-color);
-            cursor: pointer;
+            text-decoration: none;
             transition: all 0.3s ease;
-            text-decoration: none; /* Jaga-jaga jika menggunakan elemen <a> */
-            display: flex;
+            display: inline-flex;
             align-items: center;
         }
 
         .home-btn:hover {
             background-color: rgba(52, 168, 83, 0.1);
-            border-radius: 4px;
         }
 
         .tab-btn {
@@ -170,8 +165,8 @@
     </header>
 
     <div class="tab-container">
-        <a href="#" class="home-btn">🏠 Beranda</a>
-        
+        <a href="https://faroukmuhamad-gif.github.io/DEMO-TUGAS/" class="home-btn">🏠 Beranda</a>
+
         <button class="tab-btn active" onclick="openTab(event, 'input-data')">Input & Data Utama</button>
         <button class="tab-btn" onclick="openTab(event, 'kepuasan')">Tingkat Kepuasan</button>
         <button class="tab-btn" onclick="openTab(event, 'report')">Looker Studio Report</button>
@@ -238,14 +233,7 @@
             }
             
             document.getElementById(tabName).classList.add("active");
-            
-            // Pengecekan agar tidak error jika dipicu dari tombol Beranda berbasis fungsi js
-            if(evt.currentTarget.classList.contains("tab-btn")) {
-                evt.currentTarget.classList.add("active");
-            } else {
-                // Jika klik beranda, aktifkan kembali highlight pada tab pertama
-                document.querySelector(".tab-btn").classList.add("active");
-            }
+            evt.currentTarget.classList.add("active");
         }
     </script>
 </body>
