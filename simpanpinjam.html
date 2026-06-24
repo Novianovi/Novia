@@ -1,240 +1,389 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Monitoring & Kepuasan</title>
-    <style>
-        :root {
-            --primary-color: #1a73e8;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --home-color: #34a853; /* Warna hijau untuk membedakan tombol Beranda */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Sistem Informasi KUB - Simpan Pinjam</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --card: #ffffff;
+      --primary: #1abc9c;
+      --primary-dark: #16a085;
+      --sidebar: #2c3e50;
+      --sidebar-dark: #1a252f;
+      --text: #2d3436;
+      --muted: #636e72;
+      --line: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --sidebar-w: 260px;
+      --sidebar-c: 76px;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(26,188,156,.10), transparent 30%),
+        radial-gradient(circle at right top, rgba(52,152,219,.09), transparent 26%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        /* Sistem Tab Navigasi */
-        .tab-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ffffff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
 
-        /* Gaya Khusus Tombol Kembali ke Beranda */
-        .home-btn {
-            padding: 15px 25px;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--home-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
+    /* Sidebar Styles */
+    .sidebar {
+      width: var(--sidebar-c);
+      background: linear-gradient(180deg, var(--sidebar) 0%, #233140 100%);
+      color: #ecf0f1;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 50;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: width .3s ease;
+    }
 
-        .home-btn:hover {
-            background-color: rgba(52, 168, 83, 0.1);
-        }
+    .sidebar:hover {
+      width: var(--sidebar-w);
+    }
 
-        .tab-btn {
-            padding: 15px 25px;
-            border: none;
-            background: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
+    .brand {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 18px;
+      background: var(--sidebar-dark);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      white-space: nowrap;
+    }
 
-        .tab-btn:hover {
-            color: var(--primary-color);
-        }
+    .brand i {
+      color: var(--primary);
+      font-size: 24px;
+      min-width: 28px;
+      text-align: center;
+    }
 
-        .tab-btn.active {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--primary-color);
-        }
+    .brand h2 {
+      font-size: 16px;
+      font-weight: 700;
+      opacity: 0;
+      transition: .25s ease;
+    }
 
-        /* Konten Panel */
-        .tab-content {
-            display: none;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            animation: fadeIn 0.5s ease;
-        }
+    .sidebar:hover .brand h2 {
+      opacity: 1;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
+    .sidebar-menu {
+      list-style: none;
+      padding: 12px 0;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .menu-item {
+      margin: 6px 10px;
+    }
 
-        /* Grid untuk layout responsif */
-        .grid-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
+    .menu-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border: none;
+      background: transparent;
+      color: #cbd5e1;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: .25s ease;
+      font: inherit;
+      text-align: left;
+    }
 
-        @media (min-width: 992px) {
-            .grid-layout {
-                grid-template-columns: 1fr 1fr;
-            }
-            .full-width {
-                grid-column: span 2;
-            }
-        }
+    .menu-toggle i {
+      width: 28px;
+      text-align: center;
+      font-size: 18px;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .menu-label {
+      opacity: 0;
+      transition: .25s ease;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 500;
+    }
 
-        .card h2 {
-            font-size: 18px;
-            margin-top: 0;
-            margin-bottom: 15px;
-            color: #444;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-            text-align: left;
-        }
+    .sidebar:hover .menu-label {
+      opacity: 1;
+    }
 
-        /* Pembungkus Iframe agar Responsif */
-        .iframe-wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            background: #f1f3f4;
-            border-radius: 4px;
-        }
+    .menu-toggle:hover,
+    .menu-toggle.active {
+      background: rgba(255,255,255,.08);
+      color: #fff;
+    }
 
-        /* Tinggi spesifik untuk kenyamanan visual */
-        .height-form-1 { height: 750px; }
-        .height-form-2 { height: 550px; }
-        .height-sheet { height: 500px; }
-        .height-studio { height: 600px; }
+    /* Main Content Area */
+    .main {
+      margin-left: var(--sidebar-c);
+      width: calc(100% - var(--sidebar-c));
+      padding: 20px;
+      transition: margin-left .3s ease, width .3s ease;
+    }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+    .sidebar:hover ~ .main {
+      margin-left: var(--sidebar-w);
+      width: calc(100% - var(--sidebar-w));
+    }
+
+    /* Topbar Styles */
+    .topbar {
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: var(--shadow);
+      border-radius: 22px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 {
+      font-size: 22px;
+      color: #1f2d3d;
+      margin-bottom: 4px;
+    }
+
+    .topbar p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #fff;
+      color: #27ae60;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,.04);
+      transition: .25s ease;
+    }
+
+    .btn-home:hover {
+      background: #27ae60;
+      color: #fff;
+    }
+
+    /* Section & Tab Panel Content */
+    .tab-content {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid Layout for Cards */
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 992px) {
+      .grid-layout {
+        grid-template-columns: 1fr 1fr;
+      }
+      .full-width {
+        grid-column: span 2;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.6);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #213547;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+      text-align: left;
+    }
+
+    /* Responsive Iframe Styles */
+    .iframe-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: #f1f3f4;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .height-form-1 { height: 750px; }
+    .height-form-2 { height: 550px; }
+    .height-sheet { height: 500px; }
+    .height-studio { height: 600px; }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>SIMPAN PINJAM KELOMPOK KUB</h1>
-    </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fa-solid fa-scale-balanced"></i>
+        <h2>SIMPAN PINJAM</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="menu-item">
+          <button class="menu-toggle active" onclick="openTab(event, 'input-data')">
+            <i class="fa-solid fa-database"></i>
+            <span class="menu-label">Input & Data Utama</span>
+          </button>
+        </li>
+        <li class="menu-item">
+          <button class="menu-toggle" onclick="openTab(event, 'kepuasan')">
+            <i class="fa-solid fa-smile"></i>
+            <span class="menu-label">Tingkat Kepuasan</span>
+          </button>
+        </li>
+        <li class="menu-item">
+          <button class="menu-toggle" onclick="openTab(event, 'report')">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span class="menu-label">Looker Studio Report</span>
+          </button>
+        </li>
+      </ul>
+    </aside>
 
-    <div class="tab-container">
-        <a href="https://faroukmuhamad-gif.github.io/DEMO-TUGAS/" class="home-btn">🏠 Beranda</a>
-
-        <button class="tab-btn active" onclick="openTab(event, 'input-data')">Input & Data Utama</button>
-        <button class="tab-btn" onclick="openTab(event, 'kepuasan')">Tingkat Kepuasan</button>
-        <button class="tab-btn" onclick="openTab(event, 'report')">Looker Studio Report</button>
-    </div>
-
-    <div id="input-data" class="tab-content active">
-        <div class="grid-layout">
-            <div class="card">
-                <h2>Formulir Input Data</h2>
-                <div class="iframe-wrapper height-form-1">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeHt04A1_WW72Kihrl2QMxBqSgnU8KZTsHMr0tbrEVBJHCstw/viewform?embedded=true" width="640" height="1240" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Sajian Data Spreadsheet Utama</h2>
-                <div class="iframe-wrapper height-sheet">
-                    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPwP1Ahu_eB2r-DM0rBZ1pEY9Bg05X5PYq7m4s6kt0hnPRTdpnIVxXqzK7dG4kihSNo60-bZi21G5Q/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
-                </div>
-            </div>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Sistem Informasi Kelompok KUB</h1>
+          <p>Dashboard Monitoring & Kepuasan Layanan Simpan Pinjam</p>
         </div>
-    </div>
-
-    <div id="kepuasan" class="tab-content">
-        <div class="grid-layout">
-            <div class="card">
-                <h2>Formulir Tingkat Kepuasan</h2>
-                <div class="iframe-wrapper height-form-2">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVClaSaNDN3qq6TpUFlYgRUNQ-V51V6YKM5BhTBRUHDX-Q7A/viewform?embedded=true">Memuat…</iframe>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>Sajian Data Spreadsheet Kepuasan</h2>
-                <div class="iframe-wrapper height-sheet">
-                    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVEGFAd_dbO73DT2_UVkd6PQDDY0FuAVS-be0EyGclWnTjWzq2moy6E66QDxi4pAEMWIrVfwB3OJCa/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
-                </div>
-            </div>
+        <div>
+          <a href="https://faroukmuhamad-gif.github.io/DEMO-TUGAS/" class="btn-home">
+            <i class="fa-solid fa-house"></i> Beranda Utama
+          </a>
         </div>
-    </div>
+      </div>
 
-    <div id="report" class="tab-content">
+      <div id="input-data" class="tab-content active">
+        <div class="grid-layout">
+          <div class="card">
+            <h2><i class="fa-solid fa-wpforms" style="color: var(--primary);"></i> Formulir Input Data</h2>
+            <div class="iframe-wrapper height-form-1">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeHt04A1_WW72Kihrl2QMxBqSgnU8KZTsHMr0tbrEVBJHCstw/viewform?embedded=true" marginheight="0" marginwidth="0">Memuat…</iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2><i class="fa-solid fa-table" style="color: #3498db;"></i> Sajian Data Spreadsheet Utama</h2>
+            <div class="iframe-wrapper height-sheet">
+              <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSPwP1Ahu_eB2r-DM0rBZ1pEY9Bg05X5PYq7m4s6kt0hnPRTdpnIVxXqzK7dG4kihSNo60-bZi21G5Q/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="kepuasan" class="tab-content">
+        <div class="grid-layout">
+          <div class="card">
+            <h2><i class="fa-solid fa-square-poll-horizontal" style="color: var(--primary);"></i> Formulir Tingkat Kepuasan</h2>
+            <div class="iframe-wrapper height-form-2">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfVClaSaNDN3qq6TpUFlYgRUNQ-V51V6YKM5BhTBRUHDX-Q7A/viewform?embedded=true">Memuat…</iframe>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2><i class="fa-solid fa-table" style="color: #3498db;"></i> Sajian Data Spreadsheet Kepuasan</h2>
+            <div class="iframe-wrapper height-sheet">
+              <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVEGFAd_dbO73DT2_UVkd6PQDDY0FuAVS-be0EyGclWnTjWzq2moy6E66QDxi4pAEMWIrVfwB3OJCa/pubhtml?widget=true&amp;headers=false">Memuat…</iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="report" class="tab-content">
         <div class="card full-width">
-            <h2>Dashboard Analisis Data Studio</h2>
-            <div class="iframe-wrapper height-studio">
-                <iframe src="https://datastudio.google.com/embed/reporting/dbb82fb9-2858-49e8-a92a-0da8cff534f9/page/page_12345" allowfullscreen>Memuat…</iframe>
-            </div>
+          <h2><i class="fa-solid fa-chart-line" style="color: #e67e22;"></i> Dashboard Analisis Data Studio</h2>
+          <div class="iframe-wrapper height-studio">
+            <iframe src="https://datastudio.google.com/embed/reporting/dbb82fb9-2858-49e8-a92a-0da8cff534f9/page/page_12345" allowfullscreen>Memuat…</iframe>
+          </div>
         </div>
-    </div>
+      </div>
+    </main>
+  </div>
 
-    <script>
-        // Fungsi Kontrol Tab Navigasi
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].classList.remove("active");
-            }
-            
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-    </script>
+  <script>
+    // Fungsi Kontrol Tab Navigasi (Disesuaikan untuk class .menu-toggle)
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+      }
+      
+      tablinks = document.getElementsByClassName("menu-toggle");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+      
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 </body>
 </html>
